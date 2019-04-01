@@ -113,7 +113,7 @@ feature "Adding applications" do
         # Visit it once again to consider grant flows
         visit "/oauth/applications/new"
 
-        i_should_see I18n.t('doorkeeper.applications.help.blank_redirect_uri')
+        i_should_see I18n.t("doorkeeper.applications.help.blank_redirect_uri")
 
         fill_in "doorkeeper_application[name]", with: "My Application"
         fill_in "doorkeeper_application[redirect_uri]",

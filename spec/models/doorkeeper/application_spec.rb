@@ -82,36 +82,35 @@ module Doorkeeper
       expect(new_application).not_to be_valid
     end
 
-    context 'redirect URI' do
-      context 'when grant flows allow blank redirect URI' do
+    context "redirect URI" do
+      context "when grant flows allow blank redirect URI" do
         before do
           Doorkeeper.configure do
             grant_flows %w[password client_credentials]
           end
         end
 
-        it 'is valid without redirect_uri' do
+        it "is valid without redirect_uri" do
           new_application.save
           new_application.redirect_uri = nil
           expect(new_application).to be_valid
         end
       end
 
-      context 'when grant flows require redirect URI' do
+      context "when grant flows require redirect URI" do
         before do
           Doorkeeper.configure do
             grant_flows %w[password client_credentials authorization_code]
           end
         end
 
-        it 'is invalid without redirect_uri' do
+        it "is invalid without redirect_uri" do
           new_application.save
           new_application.redirect_uri = nil
           expect(new_application).not_to be_valid
         end
       end
     end
-
 
     it "checks uniqueness of uid" do
       app1 = FactoryBot.create(:application)
